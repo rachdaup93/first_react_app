@@ -7,11 +7,37 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 </head>
 <body>
+	<div id="js"></div>
+	<div id="react"></div>
 	<script type="text/babel">
-		ReactDOM.render(
-			<h1>Rachelle Dauphin</h1>,
-			document.body
-			);
+const jsContainer = document.getElementById("js");
+const reactContainer = document.getElementById("react");
+const render = () => {
+  jsContainer.innerHTML = `
+    <div class="demo">
+      Hello JS
+      <input />
+      <p>${new Date()}</p>
+    </div>
+  `;
+  ReactDOM.render(
+    React.createElement(
+      "div",
+      { className: "demo" },
+      "Hello React ",
+      React.createElement("input"),
+      React.createElement(
+        "p",
+        null,
+        new Date().toString()
+      )
+    ),
+    reactContainer
+  );
+}
+
+<!-- Refreshes both elements every second -->
+setInterval(render, 1000);
 	</script>
 </body>
 
